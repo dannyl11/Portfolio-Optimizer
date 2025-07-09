@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Optimizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📈 Portfolio Optimizer</h1>
+            <p>Optimize your investment portfolio with advanced algorithms</p>
+        </header>
+
+        <main>
+            <div class="form-container">
+                <form id="optimizeForm">
+                    <div class="form-group">
+                        <label for="capital">Initial Capital ($)</label>
+                        <input type="number" id="capital" name="capital" required min="1000" step="0.01" placeholder="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="horizon">Investment Horizon</label>
+                        <select id="horizon" name="horizon" required>
+                            <option value="">Select horizon</option>
+                            <option value="short">Short Term (< 1 year)</option>
+                            <option value="medium">Medium Term (1-5 years)</option>
+                            <option value="long">Long Term (5+ years)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tickers">Stock Tickers</label>
+                        <div class="ticker-input-container">
+                            <input type="text" id="tickerInput" placeholder="Enter ticker (e.g., AAPL)" maxlength="5">
+                            <button type="button" id="addTickerBtn">Add Stock</button>
+                        </div>
+                        <div id="tickersList" class="tickers-list"></div>
+                        <small>Add at least 2 stocks to your portfolio</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="desired_return">Desired Return (%)</label>
+                        <input type="number" id="desired_return" name="desired_return" required min="0" max="100" step="0.01" placeholder="">
+                    </div>
+
+                    <button type="submit" id="optimizeBtn">
+                        <span id="btnText">Optimize Portfolio</span>
+                        <span id="btnSpinner" class="spinner" style="display: none;"></span>
+                    </button>
+                </form>
+            </div>
+
+            <div id="results" class="results-container" style="display: none;">
+                <h2>Optimization Results</h2>
+                <div id="resultsContent"></div>
+            </div>
+
+            <div id="error" class="error-container" style="display: none;">
+                <h3>Error</h3>
+                <div id="errorContent"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
